@@ -14,12 +14,14 @@ public class Player : MonoBehaviour
     private bool noChão;
 
     public Rigidbody rb;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("star");
         TryGetComponent(out rb);
+        TryGetComponent(out source);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,6 +44,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && noChão)
         {
+            //pulo
+            source.Play();
+            
             rb.AddForce(Vector3.up * forcapulo, ForceMode.Impulse);
             noChão = false;
         }
